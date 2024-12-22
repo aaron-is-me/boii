@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Camera Access - Christmas Theme</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+  </style>
+</head>
+<body class="flex items-center justify-center h-screen bg-gradient-to-r from-blue-200 via-blue-300 to-blue-400">
+
+  <div class="text-center space-y-6 px-4">
+    <!-- Christmas Message -->
+    <h1 class="text-5xl font-bold text-white mb-4 font-[Great+Vibes] animate-bounce">
+      🎄 Merry Christmas! My Boy is Here 💞
+    </h1>
+
+    <!-- Video Container -->
+    <div class="relative w-full max-w-md mx-auto mb-4">
+      <video id="camera" class="rounded-lg border-8 border-yellow-400 shadow-xl w-full h-auto" autoplay playsinline></video>
+      <div class="absolute top-0 right-0 bg-white text-red-700 font-bold px-3 py-1 rounded-bl-md shadow-md">
+        🎅 🎁
+      </div>
+    </div>
+
+    <!-- Christmas Message -->
+    <p class="text-white text-lg max-w-md mx-auto leading-relaxed">
+      "🎄 Merry Christmas, my love. 💖 I’m sorry if I upset you—your smile means everything to me. Let’s make this Christmas special together. 💕" 🌟
+    </p>
+  </div>
+
+  <script>
+    const video = document.getElementById('camera');
+
+    async function startCamera() {
+      try {
+        // Try to get the environment (back) camera
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: "environment" } // Default back camera
+        });
+        video.srcObject = stream;
+      } catch (error) {
+        console.error(error);
+        alert("Unable to access the camera. Please check permissions or try another device.");
+      }
+    }
+
+    // Automatically start the camera when the page loads
+    window.addEventListener('load', startCamera);
+  </script>
+</body>
+</html>
